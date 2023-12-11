@@ -1,0 +1,8 @@
+kornia
+imageio
+scikit-image
+torch_dct
+configargparse
+nibabel
+OleFileIO_PL
+gco-wrapper

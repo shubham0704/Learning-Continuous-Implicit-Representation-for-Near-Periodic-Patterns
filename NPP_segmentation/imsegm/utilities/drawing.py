@@ -17,7 +17,7 @@ if os.environ.get('DISPLAY', '') == '' and matplotlib.rcParams['backend'] != 'ag
 
 import matplotlib.pyplot as plt
 import numpy as np
-from planar import line as pl_line
+# from planar import line as pl_line
 from scipy import ndimage
 from skimage import color, draw, segmentation
 
@@ -605,21 +605,41 @@ def draw_graphcut_unary_cost_segments(segments, unary_cost):
     return imgs_u_cost
 
 
-def closest_point_on_line(start, end, point):
-    """ projection of the point to the line
+# def closest_point_on_line(start, end, point):
+#     """ projection of the point to the line
 
-    :param list(int) start: line starting point
-    :param list(int) end: line ending point
-    :param list(int) point: point for extimation
-    :return list(int): point on the line
+#     :param list(int) start: line starting point
+#     :param list(int) end: line ending point
+#     :param list(int) point: point for extimation
+#     :return list(int): point on the line
+
+#     >>> closest_point_on_line([0, 0], [1, 2], [0, 2])
+#     array([ 0.8,  1.6])
+#     """
+#     start, end, point = [np.array(a) for a in [start, end, point]]
+#     line = pl_line.Line(start, (end - start))
+#     proj = np.array(line.project(point))
+#     return proj
+
+def closest_point_on_line(start, end, point):
+    """
+    Projection of the point to the line.
+
+    :param list(int) start: Line starting point.
+    :param list(int) end: Line ending point.
+    :param list(int) point: Point for estimation.
+    :return np.array: Point on the line.
 
     >>> closest_point_on_line([0, 0], [1, 2], [0, 2])
-    array([ 0.8,  1.6])
+    array([0.8, 1.6])
     """
-    start, end, point = [np.array(a) for a in [start, end, point]]
-    line = pl_line.Line(start, (end - start))
-    proj = np.array(line.project(point))
-    return proj
+    start, end, point = np.array(start), np.array(end), np.array(point)
+    line_vector = end - start
+    point_vector = point - start
+    line_length = np.dot(line_vector, line_vector)
+    projected_length = np.dot(point_vector, line_vector) / line_length
+    projection = start + projected_length * line_vector
+    return projection
 
 
 def draw_eggs_ellipse(mask_shape, pos_ant, pos_lat, pos_post, threshold_overlap=0.6):
@@ -927,7 +947,7 @@ def draw_graphcut_weighted_edges(segments, centers, edges, edge_weights, img_bg=
         color_w = np.tile(val, (3, 1)).T
         img[rr, cc, :] = color_w * clrs(edge_ratio[i])[:3] + (1 - color_w) * img[rr, cc, :]
 
-        circle = draw.circle(y1, x1, radius=2, shape=img.shape[:2])
+        circle = draw.circle_perimeter(y1, x1, radius=2, shape=img.shape[:2])
         img[circle] = 1., 1., 0.
     return img
 

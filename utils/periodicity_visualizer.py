@@ -32,8 +32,8 @@ class GridProgram(object):
         vectors = np.array(CANVAS_CORNER) * np.array(canvas_shape[::-1]) - self.base_point
         canvas_corner_coord = np.linalg.inv(np.stack([self.first_shift, self.second_shift], axis=1)) @ vectors.T
         # first: i; second: j;
-        i_min, j_min = np.floor(canvas_corner_coord.min(axis=1)).astype(np.int)
-        i_max, j_max = np.ceil(canvas_corner_coord.max(axis=1)).astype(np.int)
+        i_min, j_min = np.floor(canvas_corner_coord.min(axis=1)).astype(np.int32)
+        i_max, j_max = np.ceil(canvas_corner_coord.max(axis=1)).astype(np.int32)
         return i_min, i_max, j_min, j_max
 
     def draw(self, image, color=(255, 255, 0), thickness=2):

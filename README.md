@@ -82,3 +82,11 @@ Then it performs image remapping, generating the outputs in "results/remapping_t
 
 The result produced by this code might be slightly different when running on a different GPU. 
 
+
+## Extra details
+This repository downloads VGG and AlexNet. Make sure you change your pip cache path when running this codebase on a remote server.
+
+Change cache path for the session as follows:
+`
+export PIP_CACHE_DIR=/workspace/shubham/local_cache
+`

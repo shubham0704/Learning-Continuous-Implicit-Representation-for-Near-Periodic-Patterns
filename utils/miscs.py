@@ -26,7 +26,7 @@ def canny(img, mask):
         img_gray = img
     img_blur = cv2.GaussianBlur(img_gray, (3, 3), 0)
 
-    mask = ndimage.binary_erosion(mask, iterations=4).astype(np.float)
+    mask = ndimage.binary_erosion(mask, iterations=4).astype(np.float32)
     img_canny = cv2.Canny(img_blur, 10, 100)
     img_canny = img_canny * mask
 

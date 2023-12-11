@@ -2,12 +2,12 @@ import torch.nn as nn
 import torch.utils.model_zoo as model_zoo
 import torch
 
-
+torch.hub.set_dir("/workspace/shubham/local_cache")
 __all__ = ['AlexNet', 'alexnet']
 
 
 model_urls = {
-    'alexnet': 'pretrained_model/alexnet-owt-4df8aa71.pth',
+    'alexnet': 'https://download.pytorch.org/models/alexnet-owt-4df8aa71.pth',
 }
 
 
@@ -46,10 +46,9 @@ class AlexNet(nn.Module):
         # x = self.classifier(x)
         return x
 
-
 def alexnet(pretrained=True, ckpt_path=None, **kwargs):
-    model = AlexNet(**kwargs)
+    
     if pretrained:
-        checkpoint = torch.load(ckpt_path)
-        model.load_state_dict(checkpoint)
+        model = torch.hub.load('pytorch/vision:v0.10.0', 'alexnet', pretrained=True)
+        model.eval()
     return model
