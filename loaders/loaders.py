@@ -45,6 +45,9 @@ def load_NPP_proposal(args):
         half_win = int(dist_to_mask[i] / np.sqrt(2) / 1.2)
 
         pseudo_mask[centroid[0]-half_win: centroid[0]+half_win, centroid[1]-half_win: centroid[1]+half_win, :] = 0
+        print('centroid',centroid)
+        print('half_win',half_win)
+        print('PSUDO', pseudo_mask[centroid[0]-half_win: centroid[0]+half_win, centroid[1]-half_win: centroid[1]+half_win, :])
 
     '''
     get pixel coordinate of training (known) and val (unknown)

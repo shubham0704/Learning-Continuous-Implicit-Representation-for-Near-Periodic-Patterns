@@ -65,6 +65,7 @@ def search():
     get pixel coordinate of training (known) and val (unknown)
     '''
     i_train, i_val = i_split
+    print("isplit",i_split)
     i_train, i_val = torch.Tensor(i_train), torch.Tensor(i_val)
 
     '''
@@ -181,7 +182,9 @@ def search():
                     '''
                         Crop ROI for patch loss evaluation
                     '''
+                    print(val_coords)
                     h_min = torch.min(val_coords[:, 0])
+                    
                     h_max = torch.max(val_coords[:, 0])
                     w_min = torch.min(val_coords[:, 1])
                     w_max = torch.max(val_coords[:, 1])

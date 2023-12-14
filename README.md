@@ -1,16 +1,4 @@
-# Learning Continuous Implicit Representation for Near-Periodic Patterns (ECCV 2022)
-### [Project Page](https://armastuschen.github.io/projects/NPP_Net/) | [Paper](https://arxiv.org/abs/2208.12278) | [Bibtex](https://armastuschen.github.io/projects/NPP_Net/static/bibtex.bib) 
-
-
-[Bowei Chen](https://armastuschen.github.io/),
-[Tiancheng Zhi](https://tiancheng-zhi.github.io/),
-[Martial Hebert](http://www.cs.cmu.edu/~hebert/),
-[Srinivasa Narasimhan](http://www.cs.cmu.edu/~srinivas)
-
-Carnegie Mellon University
-
-![](teaser.jpg)
-
+# Learning to Transform High-frequency Periodic Distributions with Guided Control
 ## Get started
 You can set up the environment with all dependencies like so:
 ```
@@ -89,4 +77,6 @@ This repository downloads VGG and AlexNet. Make sure you change your pip cache p
 Change cache path for the session as follows:
 `
 export PIP_CACHE_DIR=/workspace/shubham/local_cache
+export PIP_CACHE_DIR=/workspace/ashwin/local_cache
+export PIP_CACHE_DIR=/workspace/your_local_folder/local_cache
 `

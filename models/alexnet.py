@@ -2,7 +2,7 @@ import torch.nn as nn
 import torch.utils.model_zoo as model_zoo
 import torch
 
-torch.hub.set_dir("/workspace/shubham/local_cache")
+torch.hub.set_dir("/workspace/ashwinv/local_cache")
 __all__ = ['AlexNet', 'alexnet']
 
 
